@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Built-By: mvmdk
+Build-Jdk: 10.0.2
+Implementation-Title: wemakepriceExam
+Implementation-Version: 0.0.1-SNAPSHOT
+Implementation-Vendor-Id: com.wemakeprice
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/wemakepriceExam
+Created-By: Maven Integration for Eclipse
+
