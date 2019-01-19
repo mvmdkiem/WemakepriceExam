@@ -4,17 +4,78 @@
 <title>Getting Started: Serving Web Content</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-<link rel="stylesheet" href="/webjars/bootstrap/4.1.0/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="/webjars/bootstrap/4.1.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="/plugins/css/bootstrap-select.min.css">
 
 <script type="text/javascript" src="/webjars/jquery/3.2.1/jquery.min.js"></script>
-<script type="text/javascript" src="/webjars/bootstrap/4.1.0/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript"
+	src="/webjars/bootstrap/4.1.0/js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript" src="/plugins/js/bootstrap-select.min.js"></script>
-<script type="text/javascript">  
-
+<script type="text/javascript">
+	function requestHtmlData() {
+		var param = "";
+		param += "type=" + jQuery("#type").val();
+		param += "url=" + jQuery("#url").val();
+		param += "printCnt=" + jQuery("#printCnt").val();
+		
+		$.ajax({
+			type : "GET",
+			contentType : "application/json",
+			url : "/htmls/read?" + param,
+			dataType : 'json',
+			cache : false,
+			timeout : 60000,
+			success : function(data) {
+				if(data.resultCode == 200){
+		
+				} else {
+					alert("오류 발생!");
+				}
+			},
+			error : function(e) {
+				alert("오류 발생 : " + e);
+				console.log(e);
+			}
+		});
+	}
 </script>
 </head>
 <body>
+	<form>
+		<div class="form-group">
+			<label for="url">Input URL</label> 
+			<input class="form-control" type="text" placeholder="url input" id="url">
+		</div>
+		<div class="form-group">
+			<label for="type">SELECT TYPE</label> 
+			<select class="form-control" id="type">
+			  <option value="html" selected="selected">html</option>
+			  <option value="txt">txt</option>
+			</select>
+		</div>
+		
+		<div class="form-group">
+			<label for="url">Input Group Count</label> 
+			<input class="form-control" type="number" placeholder="number input" id="printCnt">
+		</div>
+	</form>
+
+	<div class="modal-footer">
+		<button type="button" class="btn btn-primary"
+			onClick="requestHtmlData();">전송</button>
+	</div>
 	
+	<form>
+		<div class="form-group">
+			<label for="url">Input URL</label> 
+			
+		</div>
+		
+		<div class="form-group">
+			<label for="url">Input Group Count</label> 
+			
+		</div>
+	</form>
 </body>
 </html>

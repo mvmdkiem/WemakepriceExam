@@ -38,24 +38,6 @@ public class HtmlController {
      */
 	@RequestMapping(value="/htmls/read", method=RequestMethod.GET)
 	public Map<String, Object> search(HomeReqeust req) throws IOException {
-		logger.info("----------------------");
-		logger.info("req.param()" + req.getUrl());
-		logger.info("req.param()" + req.getPrintCnt());
-		logger.info("req.param()" + req.getType());
-		logger.info("----------------------");
 		return service.search(req); 
 	}
-	
-	
-	 /**
-     * rest API 테스트
-     * @param   
-     * @return  페이지 네비게이션 관련 정보
-     */
-//	@RequestMapping(value="/api/test/read", method=RequestMethod.GET)
-//	public Map<String, Object> search(HomeReqeust test) {
-//		return service.search(test); 
-//	}
-	
-	
 }
