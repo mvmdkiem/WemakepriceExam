@@ -33,16 +33,30 @@ public class HtmlServiceImpl implements HtmlService{
 	private String str = "";
 	
 	@Override
-	public Map<String, Object> search(HomeReqeust req) throws IOException {
+	public Map<String, Object> search(HomeReqeust req) {
+		String resultCode = "";
+		
 		this.str = "";
 		this.list = new ArrayList<String>();
 		
 		Map<String, Object> result = new HashMap<String, Object>();
 		Map<String, Map<Integer, Integer>> charMap = new HashMap<String, Map<Integer, Integer>>();
-		if("txt".equals(req.getType())) {
-			charMap = getAsciiMapOutterTag(getHtml(req.getUrl()));
-		} else if("html".equals(req.getType())){
-			charMap = getAsciiMapByTag(getHtml(req.getUrl()));
+		try {
+			if("txt".equals(req.getType())) {
+				charMap = getAsciiMapOutterTag(getHtml(req.getUrl()));
+			} else if("html".equals(req.getType())){
+				charMap = getAsciiMapByTag(getHtml(req.getUrl()));
+			}
+		} catch (Exception e) {
+			result.put("resultCode", 500);
+			result.put("result", list);
+			return result;
+		} finally {
+			if(charMap.size() == 0) {
+				result.put("resultCode", 400);
+				result.put("result", list);
+				return result;
+			}
 		}
 		
 		Map<Integer, Integer> uMap = charMap.get("uMap");
@@ -62,9 +76,11 @@ public class HtmlServiceImpl implements HtmlService{
 				getStrList(nMap, req.getPrintCnt());
 			}
 		}
-		if(!str.equals("")) list.add(str);
+		//if(!str.equals("")) list.add(str);
 		
-		result.put("result", list);
+		result.put("resultCode", 200);
+		result.put("resultList", list); //그룹
+		result.put("resultStr", str);	//나머지
 		return result;
 	}
 	

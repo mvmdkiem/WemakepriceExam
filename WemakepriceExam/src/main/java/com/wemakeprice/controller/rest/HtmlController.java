@@ -38,6 +38,8 @@ public class HtmlController {
      */
 	@RequestMapping(value="/htmls/read", method=RequestMethod.GET)
 	public Map<String, Object> search(HomeReqeust req) throws IOException {
+		System.out.println(req.getUrl());
+		
 		return service.search(req); 
 	}
 }
