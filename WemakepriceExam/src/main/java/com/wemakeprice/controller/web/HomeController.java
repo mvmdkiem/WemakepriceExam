@@ -28,7 +28,7 @@ public class HomeController {
      *   
      */
 	@RequestMapping("/")
-    public ModelAndView greeting(Model model) {
+    public ModelAndView index(Model model) {
 		log.info("MOVE INDEX");
         ModelAndView modelAndView = new ModelAndView("index");
         modelAndView.setViewName("/web/index");

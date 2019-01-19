@@ -16,7 +16,7 @@ import com.wemakeprice.service.HtmlService;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * To-Do 리스트 페이징 처리에 필요한 Class 
+ * 
  *
  * @version     1.00 
  * @author      김태형
@@ -33,10 +33,10 @@ public class HtmlController {
 	/**
      * request param 테스트
      * @param   
-     * @return  페이지 네비게이션 관련 정보
+     * @return  HTML 내용을 가져오는 Service를 호출
 	 * @throws IOException 
      */
-	@RequestMapping(value="/api/test/read", method=RequestMethod.GET)
+	@RequestMapping(value="/htmls/read", method=RequestMethod.GET)
 	public Map<String, Object> search(HomeReqeust req) throws IOException {
 		logger.info("----------------------");
 		logger.info("req.param()" + req.getUrl());

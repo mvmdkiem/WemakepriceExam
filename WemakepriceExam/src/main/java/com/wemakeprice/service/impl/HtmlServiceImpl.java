@@ -43,13 +43,10 @@ public class HtmlServiceImpl implements HtmlService{
 		//result.put("html", getHtml(req.getUrl()));
 		//map.put("test2", getHtmlByJsoup());
 		
-		String type = "txt";
-		int printCnt = 10;
-		
 		Map<String, Map<Integer, Integer>> charMap = new HashMap<String, Map<Integer, Integer>>();
-		if("txt".equals(type)) {
+		if("txt".equals(req.getType())) {
 			charMap = getAsciiMapOutterTag(getHtml(req.getUrl()));
-		} else if("html".equals(type)){
+		} else if("html".equals(req.getType())){
 			charMap = getAsciiMapByTag(getHtml(req.getUrl()));
 		}
 		
@@ -59,15 +56,15 @@ public class HtmlServiceImpl implements HtmlService{
 		
 		while(!uMap.isEmpty() || !sMap.isEmpty() || !nMap.isEmpty()) {
 			if(!uMap.isEmpty()) {
-				getStrList(uMap, printCnt);
+				getStrList(uMap, req.getPrintCnt());
 			}
 			
 			if(!sMap.isEmpty()) {
-				getStrList(sMap, printCnt);
+				getStrList(sMap, req.getPrintCnt());
 			}
 			
 			if(!nMap.isEmpty()) {
-				getStrList(nMap, printCnt);
+				getStrList(nMap, req.getPrintCnt());
 			}
 		}
 		if(!str.equals("")) list.add(str);
